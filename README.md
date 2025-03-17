@@ -1,6 +1,7 @@
 # PDF Compression Tool
 
-![PDF Compression](https://via.placeholder.com/800x400.png?text=PDF+Compression+Tool)
+<img width="641" alt="image" src="https://github.com/user-attachments/assets/81516247-465c-4fec-b044-07aae689a414" />
+
 
 A lightweight Python tool to compress PDF files while maintaining readability. Reduce PDF file sizes by up to 70% or more!
 
