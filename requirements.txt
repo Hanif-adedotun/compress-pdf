@@ -1,3 +1,4 @@
 dotenv
 pymupdf
 streamlit
+pandas
