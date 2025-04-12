@@ -40,4 +40,4 @@ def compress_pdf(input_path, output_path, zoom_x=0.5, zoom_y=0.5):
         print(f"Compressed size: {os.path.getsize(output_path)/1024:.2f} KB")
         
     except Exception as e:
-        print(f"Error compressing PDF: {str(e)}")
+        raise Exception(f"Failed to compress PDF: {str(e)}")
