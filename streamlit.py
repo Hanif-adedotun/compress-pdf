@@ -14,7 +14,7 @@ st.markdown("<h1 style='text-align: center;'>Compress your PDF files lightning f
 # Set loading variable
 loading = False;
 
-uploaded_file = st.file_uploader("Choose a file", type="pdf")
+uploaded_file = st.file_uploader("Choose a file", type=["pdf"])
 loading = True;
 
 # Main container
@@ -37,10 +37,14 @@ if uploaded_file is not None:
           input_temp_path = tmp_file.name
      
      output_pdf = tempfile.NamedTemporaryFile(delete=False, suffix=f'{file_name}-compressed.pdf').name
-     
+               
      try:
           compress_pdf(input_temp_path, output_pdf, zoom_x=0.75, zoom_y=0.75)
           # loading = False;
+          
+          if os.path.getsize(output_pdf) >= uploaded_file.size:
+               # container.error("Could not Compress this file, please try again with another file.", icon=":material/error:")
+               raise Exception("Compression failed - Output file is larger than input file, tweak the parameters and try again")
           
           output_file_size = f"{os.path.getsize(output_pdf)/1024:.2f} KB"
           
@@ -58,7 +62,8 @@ if uploaded_file is not None:
                )
                
      except Exception as e:
-          container.error("Could not Compress this file, please try again with another file.", icon=":material/error:")
+          message = str(e) if str(e) else "Could not Compress this file, please try again with another file."
+          container.error(message, icon=":material/error:")
           print(f"Error processing {input_temp_path}: {str(e)}")
 
 
