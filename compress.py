@@ -1,4 +1,4 @@
-import pymupdf 
+import fitz  
 import os
 
 def compress_pdf(input_path, output_path, zoom_x=0.5, zoom_y=0.5):
@@ -11,16 +11,16 @@ def compress_pdf(input_path, output_path, zoom_x=0.5, zoom_y=0.5):
     """
     try:
         # Open the PDF
-        document = pymupdf.open(input_path)
+        document = fitz.open(input_path)
         
         # Create a new PDF for output
-        new_document = pymupdf.open()
+        new_document = fitz.open()
         
         # Iterate through pages
         for page_num in range(len(document)):
             page = document.load_page(page_num)
             # Create a transformation matrix for scaling
-            mat = pymupdf.Matrix(zoom_x, zoom_y)
+            mat = fitz.Matrix(zoom_x, zoom_y)
             # Get the pixmap (scaled image) of the page
             pix = page.get_pixmap(matrix=mat, alpha=False, dpi=72)
             # Convert to JPEG with quality setting using the correct method
