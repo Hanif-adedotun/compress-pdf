@@ -48,6 +48,8 @@ if uploaded_file is not None:
           # add slider to set Zoom in y direction
           zoom_y = st.slider("Zoom percentage y", min_value=0, max_value=100, value=75)
      
+     container.info("The lower the quality zoom percentages, the smaller the compressed output")
+         
      # To read file as bytes:
      bytes_data = uploaded_file.getvalue()
      
