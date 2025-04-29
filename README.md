@@ -34,9 +34,6 @@ A lightweight Python tool to compress PDF files while maintaining readability. R
      FILE_LOCATION="/path/to/your/files/"
      FILE_NAMES="file1.pdf,file2.pdf,file3.pdf"
      ```
-     ```
-
-     ```
 
 4. **Run the compression tool**
    ```bash
