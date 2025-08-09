@@ -1,0 +1,19 @@
+import unittest
+from dotenv import load_dotenv
+import os
+
+class TestEnvFile(unittest.TestCase):
+    def test_file_location(self):
+        load_dotenv('.env')
+        file_location = os.getenv("FILE_LOCATION")
+        self.assertIsNotNone(file_location)
+        self.assertEqual(file_location, "Folder Location")
+
+    def test_file_names(self):
+        load_dotenv('.env')
+        file_names = os.getenv("FILE_NAMES")
+        self.assertIsNotNone(file_names)
+        self.assertEqual(file_names, "File.pdf, File-2.pdf, File-3.pdf")
+
+if __name__ == '__main__':
+    unittest.main()
