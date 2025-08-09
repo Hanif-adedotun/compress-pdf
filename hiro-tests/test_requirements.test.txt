@@ -1,0 +1,30 @@
+import unittest
+from unittest.mock import patch, MagicMock
+import os
+import pandas as pd
+import streamlit as st
+import tempfile
+from compress import compress_pdf
+
+class TestStreamlitApp(unittest.TestCase):
+    @patch('streamlit.file_uploader')
+    def test_file_uploader(self, mock_file_uploader):
+        mock_file_uploader.return_value = 'test.pdf'
+        uploaded_file = st.file_uploader("Choose a file", type=["pdf"])
+        self.assertEqual(uploaded_file, 'test.pdf')
+
+    @patch('compress.compress_pdf')
+    def test_compress_pdf(self, mock_compress_pdf):
+        mock_compress_pdf.return_value = None
+        input_pdf = 'input.pdf'
+        output_pdf = 'output.pdf'
+        compress_pdf(input_pdf, output_pdf, zoom_x=0.75, zoom_y=0.75)
+        mock_compress_pdf.assert_called_once_with(input_pdf, output_pdf, zoom_x=0.75, zoom_y=0.75)
+
+    @patch('os.path.join')
+    def test_file_path(self, mock_os_path_join):
+        mock_os_path_join.return_value = 'test_path'
+        file_location = 'location'
+        file_name = 'file.pdf'
+        input_pdf = os.path.join(file_location, file_name)
+        self.assertEqual(input_pdf, 'test_path')
