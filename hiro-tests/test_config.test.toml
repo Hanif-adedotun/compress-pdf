@@ -1,0 +1,9 @@
+import unittest
+from your_module import maxUploadSize
+
+class TestConfigToml(unittest.TestCase):
+    def test_max_upload_size(self):
+        self.assertEqual(maxUploadSize, 800)
+
+if __name__ == '__main__':
+    unittest.main()
